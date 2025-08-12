@@ -1,0 +1,172 @@
+        *{
+font-family: poppins;
+        }
+        body{
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           height: 100vh;
+           justify-content: center;
+           margin: 0;
+           text-align: center;
+          transition: background-color .3s ease,color .3s ease;
+        }
+        button{
+            cursor: pointer;
+            outline: none;
+        }
+        #box-container{
+        display:none;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,1fr);
+        
+        }
+        #box-container button{
+            background-color: transparent;
+            color: #eef4f1;
+            width: 70px;
+            height: 70px;
+            outline: none;
+            cursor: pointer;
+            border:none;
+            font-size: 1.5rem;
+        }
+        #box-container button:nth-child(1){
+            border-bottom: 5px solid;
+            border-right: 5px solid;
+        }
+        #box-container button:nth-child(3){
+            border-bottom: 5px solid;
+            border-left: 5px solid;
+        }
+        #box-container button:nth-child(7){
+            border-top: 5px solid;
+            border-right: 5px solid;
+        }
+        #box-container button:nth-child(9){
+            border-top: 5px solid;
+            border-left: 5px solid;
+        }
+        #box-container button:nth-child(2){
+            border-bottom: 5px solid;
+        }
+        #box-container button:nth-child(8){
+            border-top: 5px solid;
+        }
+        
+#box-container button:nth-child(4){
+            border-right: 5px solid;
+        }
+        #box-container button:nth-child(6){
+            border-left: 5px solid;
+        }
+        #character-buttons{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+        }
+        #character-buttons button{
+            width: 70px;
+            height: 40px; 
+            border: none;
+            border-radius: 5px;
+            font-weight: bolder;
+            transition: box-shadow .2s ease;
+        }
+        
+        @keyframes scaleAnime {
+            0%{
+                scale:0.85
+            }
+            100%{
+              
+                scale:1.05;
+                background-color: #7692a5;
+                color:#08120d;
+            }
+        }
+        #action-buttons{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+        }
+        #action-buttons button{
+           width: 120px;
+            padding: 10px;
+            background-color: #cbb0cb;
+            border-radius: 5px;
+            border: none;
+            transition: scale .3s ease,box-shadow .2s ease;
+            font-weight: bolder;
+            font-size: 0.9rem;
+        }
+         #action-buttons button:hover{
+            scale: 1.08;
+            box-shadow: 0px 0px 10px #2c2c2c;
+        }
+        dialog{
+            border: 7px solid #7692a5;
+            border-radius: 10px;
+            transition: border .3s ease;
+        }
+        #result-container{
+            display: none;
+            width: 500px;
+            padding: 10px;
+            background-color:#eef4f1;
+            border: 5px solid #7692a5;
+            border-radius: 10px;
+            flex-direction: column;
+            gap: 10px;
+            color: #08120d;
+            text-align: center;
+            height: 150px;
+        }
+        @media (max-width:500px){
+#result-container{
+            width: 250px;
+}
+        }
+        #result-container button{
+            background-color: #7692a5;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        @media (min-width:500px){
+            dialog{
+                width: 50%;
+            }
+
+        }
+        #checkbox-holder{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        #close{
+           padding: 5px;
+        }
+        #theme-dialog{
+        
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        }
+        #select{
+            width: 70%;
+            padding:5px;
+            text-align: center;
+            outline: none;
+        }
+        .active{
+            box-shadow: 0px 0px 15px ;
+            font-size: 1rem;
+            scale: 1.05;
+        }
+        

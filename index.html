@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tick Tac Toe</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kablammo|Sour Gummy|Atma|Poppins|Montserrat"
+    />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="home">
+        <h1 style="font-family: Montserrat;">Tick Tac Toe</h1>
+       
+        <div id="action-buttons">
+         <button type="button" id="play" class="action-btn" onclick="startGame()">Play</button>
+        <button type="button" class="action-btn" onclick="openCustomizeDialog()">Customize</button>
+        <button type="button" class="action-btn" onclick="openStatsDialog()">Stats</button> 
+         <button type="button" class="action-btn" onclick="openThemeDialog()">Theme</button>
+          <button type="button" class="action-btn" onclick="">More Games</button>
+             
+        </div>
+    </div>
+    <dialog id="customize-dialog">
+        
+         <h3>Change Your Character</h3>
+        <div id="character-buttons">
+      <button type="button" onclick='updateCharacter("X","O")' id="x-btn" class="active">X</button>
+      <button type="button" onclick='updateCharacter("O","X")' id="o-btn">O</button>
+      
+        </div>
+        <br>
+        <div id="checkbox-holder">
+            <p>Allow Diagonal Wins</p>
+            <input type="checkbox" id="diagonal-win" checked oninput="diagonalFx(this)">
+        </div>
+        <button type="button" id="close" onclick="closeDialog(this)">Close</button>
+    </dialog>
+    <dialog id="theme-dialog">
+        <h3>Select Your Theme</h3>
+        <select id="select" onchange="changeTheme(this)">
+            <option value="Jade">Jade</option>
+            <option value="Lime">Lime</option>
+            <option value="Zinc">Zinc</option>
+            <option value="Amber">Amber</option>
+            <option value="Marble">Marble</option>
+            <option value="Slate">Slate</option>
+            <option value="Sand">Sand</option>
+            <option value="Cyan">Cyan</option>
+        </select>
+        <br> <br>
+         <button type="button" id="close" onclick="closeDialog(this)">Close</button>
+    </dialog>
+    <dialog id="stats-dialog">
+        <h2>Your All Time Stats</h2>
+    </dialog>
+    <div id="box-container">
+    </div>
+    <div id="result-container"></div>
+    <script src="script.js">
+
+        
+    </script>
+</body>
+</html>
