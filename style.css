@@ -87,11 +87,15 @@ font-family: poppins;
             }
         }
         #action-buttons{
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
             align-items: center;
             gap: 15px;
             justify-content: center;
+        }
+        #action-buttons button:nth-child(1){
+            grid-column-start: span 2;
+            width: auto;
         }
         #action-buttons button{
            width: 120px;
