@@ -125,7 +125,7 @@ font-family: poppins;
             text-align: center;
             height: 150px;
         }
-        @media (max-width:500px){
+        @media (max-width:550px){
 #result-container{
             width: 250px;
 }
@@ -148,8 +148,10 @@ font-family: poppins;
             justify-content: center;
             gap: 10px;
         }
-        #close{
-           padding: 5px;
+        .close{
+           padding: 10px;
+           border-radius: 5px;
+           border: none;
         }
         #theme-dialog{
         
@@ -169,4 +171,10 @@ font-family: poppins;
             font-size: 1rem;
             scale: 1.05;
         }
-        
+       #home h1{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+       }

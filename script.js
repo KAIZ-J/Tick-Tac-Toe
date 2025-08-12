@@ -15,7 +15,7 @@ const oBtn = document.getElementById("o-btn")
         const customizeDialog=document.getElementById("customize-dialog")
         const diagonalCheckbox = document.getElementById("diagonal-win")
         const bodyTag= document.body;
-        let currentTheme=localStorage.getItem("currentTheme") || "Jade";
+        let currentTheme=localStorage.getItem("currentTheme") || "Sand";
         [...document.querySelectorAll("option")].find(el=>el.value===currentTheme).selected=true;
          const boxContainer=document.getElementById("box-container")
         const resultContainer=document.getElementById("result-container")
@@ -32,6 +32,7 @@ const oBtn = document.getElementById("o-btn")
              bodyTag.style.color=array[1];
              xBtn.style.backgroundColor=array[3]
              oBtn.style.backgroundColor=array[3]
+             document.querySelectorAll(".close").forEach(el=>el.style.backgroundColor=array[3])
         }
       
             themeChange(themes[currentTheme])
@@ -50,12 +51,13 @@ const oBtn = document.getElementById("o-btn")
             elem.parentElement.close()
         }
        function openStatsDialog(){
-        statsDialog.innerHTML+=`<p><span style="color:${themes[currentTheme][2]}">${wonGames+drawGames+lostGames}</span> Games Played<p/>
-                <p>Won <span style="color:${themes[currentTheme][2]}">${wonGames}</span> games<p/>
-                    <p>Drawed <span style="color:${themes[currentTheme][2]}">${drawGames}</span> games<p/>
-                    <p>Lost <span style="color:${themes[currentTheme][2]}">${lostGames}</span> games<p/>`
+        statsDialog.innerHTML=""
+        statsDialog.innerHTML+=`<h2>Your All Time Stats</h2>
+        <table border=1 style="border-color:${themes[currentTheme][2]};text-align:center;width:100%" align=center>
+         <tr> <td>Games Won</td> <td>${wonGames}</td> </tr> <tr> <td>Games Drawed</td> <td>${drawGames}</td> </tr> <tr> <td>Games Lost</td> <td>${lostGames}</td> </tr><tr> <td>Games Played</td> <td>${wonGames+drawGames+lostGames}</td> </tr>
+        </table>`
         statsDialog.showModal();
-        statsDialog.innerHTML+=`<button type="button" id="close" onclick="closeDialog(this)">Close</button>`
+        statsDialog.innerHTML+=`<br><button type="button" id="close" onclick="closeDialog(this)">Close</button>`
        }
 
         
