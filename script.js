@@ -93,6 +93,42 @@ oBtn.classList.toggle("active")
               boxCheck[`box-${i}`]=true;
             }
         }
+        function pcTurnBestMove(){
+            let num=-1;
+            if(boxCheck[`box-${5}`]===true){
+                num=5;
+            };
+            if(num===-1){
+           for(let i=8;i>6;i--){
+            let array = winningNumbers[i];
+                let filteredArray = array.filter(item=>boxCheck[`box-${item+1}`]===false)
+                let filteredArrayContent = filteredArray.map(item=>document.getElementById(`box-${item+1}`).textContent).join("");
+                if(filteredArrayContent="O"){
+                    num=array.find(item=>boxCheck[`box-${item+1}`]===true)+1;
+                    break;
+                }
+
+            }
+        }
+        return num;
+    }
+    function checkIfAllEmpty(){
+        let num=-1;
+        if(Object.keys(boxCheck).every(a=>boxCheck[a]===true)){
+            num=0;
+        }
+        return num;
+    }
+    function centerOrCorner(){
+        let num=-1;
+        if(boxCheck[`box-5`]===true){
+            num=4;
+        }
+        else if(Object.keys(boxCheck).some(a=>boxCheck[a]===false) && boxCheck[`box-1`]===true){
+            num=0;
+        }
+        return num;
+    }
        function pcBestMove(str){
         let num = -1;
   for(let i=0;i<winningNumbers.length;i++){
@@ -114,6 +150,13 @@ break;
                  if(num===-1){
                 num=pcBestMove(`${pcCharacter}`)
                 }
+                if(num===-1){
+                    num=checkIfAllEmpty();
+                }
+                if(num===-1){
+                    num=centerOrCorner();
+                }
+                
            return num!==-1?num+1:Math.floor(Math.random()*9)+1;
         }
         function pcChoice(){
