@@ -133,8 +133,6 @@ oBtn.classList.toggle("active")
     }
    }
   for(let j=0;;j++){
-    let r = Math.floor(Math.random()*generalArray.length)
-    let ri = Math.floor(Math.random()*2)
     if(boxCheck[`box-${generalArray[0][1]+1}`]===true)
     num=generalArray[0][1]
     break;
