@@ -97,6 +97,11 @@ font-family: poppins;
             grid-column-start: span 2;
             width: auto;
         }
+         #action-buttons button:nth-child(2){
+            grid-column-start: span 2;
+            width: auto;
+        }
+
         #action-buttons button{
            width: 120px;
             padding: 10px;

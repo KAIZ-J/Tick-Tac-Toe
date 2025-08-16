@@ -84,15 +84,18 @@ oBtn.classList.toggle("active")
             }
         }
         
-        function addBoxes(){
+        function addBoxes(cls){
             boxContainer.innerHTML="";
             boxCheck={};
             for(let i=1;i<10;i++){
-                boxContainer.innerHTML+=`<button type="button" id="box-${i}" class="box" onclick="addContent(this)"></button>`;
+                boxContainer.innerHTML+=`<button type="button" id="box-${i}" class="box" onclick="${cls}(this)"></button>`;
                 document.getElementById(`box-${i}`).style.borderColor=`${themes[currentTheme][1]}`
               boxCheck[`box-${i}`]=true;
             }
         }
+
+
+        ///to make the computer smart enough
         function pcTurnBestMove(){
             let num=-1;
             if(boxCheck[`box-${5}`]===true){
@@ -157,6 +160,8 @@ oBtn.classList.toggle("active")
         }
         return num;
     }
+
+    //ends here
        function pcBestMove(str){
         let num = -1;
   for(let i=0;i<winningNumbers.length;i++){
@@ -208,7 +213,9 @@ for(let i=0;;i++){
         function startGame(){
             home.style.display="none";
             boxContainer.style.display="grid";
-             addBoxes();
+            resultContainer.style.display="none";
+            gameWon=false;
+             addBoxes("addContent");
              if(userTurn===false){
                setTimeout(function(){
                 pcChoice()
@@ -219,21 +226,6 @@ for(let i=0;;i++){
            userTurn=false
              }
              
-        }
-        function playAgain(){
-            resultContainer.style.display="none";
-            boxContainer.style.display="grid";
-            addBoxes();
-            gameWon=false;
-             if(userTurn===false){
-               setTimeout(function(){
-                pcChoice()
-               },200) 
-                userTurn=true;
-             }
-             else{
-           userTurn=false
-             }
         }
         function backHome(){
             resultContainer.style.display="none";
@@ -303,6 +295,71 @@ winMessage("tie")
          }
          resultContainer.innerHTML+=`<div>
                 <button type="button" id="home" onclick="backHome()" style="background-color:${themes[currentTheme][2]}">Home</button>
-                <button type="button" id="try" onclick="playAgain()" style="background-color:${themes[currentTheme][2]}">Play again</button>
+                <button type="button" id="try" onclick="startGame()" style="background-color:${themes[currentTheme][2]}">Play again</button>
+                </div>`
+        }
+        //two player
+
+        function startGameFriend(){
+            playerFriendCharacter="X";
+             home.style.display="none";
+            boxContainer.style.display="grid";
+            resultContainer.style.display="none";
+            gameWon=false;
+             addBoxes("addFriendInput");
+        }
+        let playerFriendCharacter="X"
+         function addFriendInput(elem){
+     if(boxCheck[elem.id]===true && gameWon===false){
+        elem.textContent=playerFriendCharacter;
+        if(playerFriendCharacter==="X"){
+            playerFriendCharacter="O"
+        }
+        else{
+            playerFriendCharacter="X"
+        }
+        elem.style.color=`${themes[currentTheme][3]}`;
+        boxCheck[elem.id]=false;
+        winCheckFriend();
+     };
+     if(Object.keys(boxCheck).every(a=>boxCheck[a]===false) && gameWon===false){
+      setTimeout(function(){
+winMessageFriend("tie")
+      },200)  
+     }
+        }
+        function winCheckFriend(){
+            let buttons = [...document.querySelectorAll(".box")]
+            let buttonsText = buttons.map(el=>el.textContent)
+            for(let i=0;i<winningNumbers.length;i++){
+                for(let z=0;z<1;z++){
+                 if(buttonsText[winningNumbers[i][z]]===buttonsText[winningNumbers[i][z+1]] && buttonsText[winningNumbers[i][z+1]]===buttonsText[winningNumbers[i][z+2]] && buttonsText[winningNumbers[i][z]]!==""){
+                    gameWon=true;
+                    buttons[winningNumbers[i][z]].style.animation="scaleAnime .4s ease forwards";
+                    buttons[winningNumbers[i][z+1]].style.animation="scaleAnime .4s ease forwards .4s"
+                    buttons[winningNumbers[i][z+2]].style.animation="scaleAnime .4s ease forwards .8s"
+                    setTimeout(function(){
+               winMessageFriend(buttonsText[winningNumbers[i][z]])
+                    },1500)
+                    
+            }
+                }
+            }
+           
+        }
+        function winMessageFriend(winner){
+         boxContainer.style.display="none";
+         resultContainer.style.display="flex";
+         if(winner==="X" || winner==="O"){
+resultContainer.innerHTML=`<h2>Player ${winner} Won</h2>`;
+         }
+         else{
+          resultContainer.innerHTML=`<h2>Draw</h2>`;  
+         }
+            
+          
+         resultContainer.innerHTML+=`<div>
+                <button type="button" id="home" onclick="backHome()" style="background-color:${themes[currentTheme][2]}">Home</button>
+                <button type="button" id="try" onclick="startGameFriend()" style="background-color:${themes[currentTheme][2]}">Play again</button>
                 </div>`
         }
