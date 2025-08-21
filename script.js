@@ -1,20 +1,9 @@
 const oBtn = document.getElementById("o-btn")
         let boxCheck = {}; let userTurn = true; let gameWon = false; let userCharacter = "X"; let pcCharacter = "O";
         let playedGames =parseInt(localStorage.getItem("playedGames")) || 0;  let wonGames=parseInt(localStorage.getItem("wonGames")) || 0; let lostGames=parseInt(localStorage.getItem("lostGames")) || 0; let drawGames=parseInt(localStorage.getItem("drawedGames")) || 0;
-         const themes = {
-    Jade: ["#0f3d3e", "#e6f2f1", "#2a9d8f", "#37b3a8"],
-    Lime: ["#1b2e14", "#f1fbe7", "#a6d609", "#c4f037"],
-    Zinc: ["#1c1c1c", "#eaeaea", "#7d7d7d", "#9f9f9f"],
-    Amber: ["#2a1b00", "#fff4e1", "#ffb300", "#ffc833"],
-    Marble: ["#f5f5f5", "#2e2e2e", "#d6d6d6", "#e8e8e8"],
-    Slate: ["#1f2933", "#e5e9f0", "#708090", "#8da0b6"],
-    Sand: ["#ede0d4", "#3e2723", "#d4a373", "#eabf96"],
-    Cyan: ["#003f4f", "#e0f7fa", "#00bcd4", "#26d4ec"]
-}
         const themeDialog=document.getElementById("theme-dialog")
         const customizeDialog=document.getElementById("customize-dialog")
         const diagonalCheckbox = document.getElementById("diagonal-win")
-        const bodyTag= document.body;
         let currentTheme=localStorage.getItem("currentTheme") || "Sand";
         [...document.querySelectorAll("option")].find(el=>el.value===currentTheme).selected=true;
          const boxContainer=document.getElementById("box-container")
@@ -22,24 +11,16 @@ const oBtn = document.getElementById("o-btn")
         const home = document.getElementById("home")
         const xBtn = document.getElementById("x-btn");
        const statsDialog =  document.getElementById("stats-dialog")
-        function themeChange(array){
-            document.querySelectorAll(".action-btn").forEach(el=>el.style.backgroundColor=array[2]);
-            themeDialog.style.borderColor=array[3]
-            customizeDialog.style.borderColor=array[3];
-            statsDialog.style.borderColor=array[3];
-            resultContainer.style.borderColor=array[3]
-            bodyTag.style.backgroundColor=`${array[0]}`;
-             bodyTag.style.color=array[1];
-             xBtn.style.backgroundColor=array[3]
-             oBtn.style.backgroundColor=array[3]
-             document.querySelectorAll(".close").forEach(el=>el.style.backgroundColor=array[3])
+        function themeChange(currentTheme){
+             document.body.className="";
+             document.body.classList.add(currentTheme)
         }
       
-            themeChange(themes[currentTheme])
+            themeChange(currentTheme)
          function changeTheme(elem){
             currentTheme=elem.value;
             localStorage.setItem("currentTheme",currentTheme)
-        themeChange(themes[currentTheme])
+        themeChange(currentTheme)
        }
         function openCustomizeDialog(){
             customizeDialog.showModal();
@@ -53,7 +34,7 @@ const oBtn = document.getElementById("o-btn")
        function openStatsDialog(){
         statsDialog.innerHTML=""
         statsDialog.innerHTML+=`<h2>Your All Time Stats</h2>
-        <table border=1 style="border-color:${themes[currentTheme][2]};text-align:center;width:100%" align=center>
+        <table border=1 style="text-align:center;width:100%" align=center>
          <tr> <td>Games Won</td> <td>${wonGames}</td> </tr> <tr> <td>Games Drawed</td> <td>${drawGames}</td> </tr> <tr> <td>Games Lost</td> <td>${lostGames}</td> </tr><tr> <td>Games Played</td> <td>${wonGames+drawGames+lostGames}</td> </tr>
         </table>`
         statsDialog.showModal();
@@ -73,13 +54,13 @@ oBtn.classList.toggle("active")
         let winningNumbers=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
         function diagonalFx(elem){
             if(diagonalCheckbox.checked===false){
-                console.log("it is unchecked now")
+                
          winningNumbers=winningNumbers.splice(0,6)
-          console.log(winningNumbers)
+        
             };
             if(diagonalCheckbox.checked===true){
          winningNumbers=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-         console.log(winningNumbers)
+    
          
             }
         }
@@ -89,7 +70,7 @@ oBtn.classList.toggle("active")
             boxCheck={};
             for(let i=1;i<10;i++){
                 boxContainer.innerHTML+=`<button type="button" id="box-${i}" class="box" onclick="${cls}(this)"></button>`;
-                document.getElementById(`box-${i}`).style.borderColor=`${themes[currentTheme][1]}`
+                document.getElementById(`box-${i}`).style.borderColor=`var(--text)`
               boxCheck[`box-${i}`]=true;
             }
         }
@@ -235,7 +216,7 @@ for(let i=0;;i++){
         function addContent(elem){
      if(boxCheck[elem.id]===true && gameWon===false){
         elem.textContent=userCharacter;
-        elem.style.color=`${themes[currentTheme][3]}`;
+        elem.style.color=`var(--accent)`;
         boxCheck[elem.id]=false;
         winCheck();
         if(gameWon===false){
@@ -294,8 +275,8 @@ winMessage("tie")
             localStorage.setItem("drawedGames",drawGames)
          }
          resultContainer.innerHTML+=`<div>
-                <button type="button" id="home" onclick="backHome()" style="background-color:${themes[currentTheme][2]}">Home</button>
-                <button type="button" id="try" onclick="startGame()" style="background-color:${themes[currentTheme][2]}">Play again</button>
+                <button type="button" id="backhome" onclick="backHome()">Home</button>
+                <button type="button" id="try" onclick="startGame()">Play again</button>
                 </div>`
         }
         //two player
@@ -318,7 +299,6 @@ winMessage("tie")
         else{
             playerFriendCharacter="X"
         }
-        elem.style.color=`${themes[currentTheme][3]}`;
         boxCheck[elem.id]=false;
         winCheckFriend();
      };
@@ -359,7 +339,7 @@ resultContainer.innerHTML=`<h2>Player ${winner} Won</h2>`;
             
           
          resultContainer.innerHTML+=`<div>
-                <button type="button" id="home" onclick="backHome()" style="background-color:${themes[currentTheme][2]}">Home</button>
-                <button type="button" id="try" onclick="startGameFriend()" style="background-color:${themes[currentTheme][2]}">Play again</button>
+                <button type="button" id="backTohome" onclick="backHome()">Home</button>
+                <button type="button" id="try" onclick="startGameFriend()">Play again</button>
                 </div>`
         }
