@@ -31,10 +31,10 @@ body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
         display:none;
         grid-template-columns: repeat(3,1fr);
         grid-template-rows: repeat(3,1fr);
-        
+        gap: 5px;
         }
         #box-container button{
-            background-color: transparent;
+            background-color: var(--text);
             color: #eef4f1;
             width: 70px;
             height: 70px;
@@ -42,8 +42,10 @@ body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
             cursor: pointer;
             border:none;
             font-size: 1.5rem;
+           border: 2px solid var(--accent);
+           color: var(--accent);
         }
-        #box-container button:nth-child(1){
+        /* #box-container button:nth-child(1){
             border-bottom: 5px solid;
             border-right: 5px solid;
         }
@@ -71,7 +73,7 @@ body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
         }
         #box-container button:nth-child(6){
             border-left: 5px solid;
-        }
+        } */
         #character-buttons{
             display: flex;
             align-items: center;
@@ -89,13 +91,13 @@ body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
         
         @keyframes scaleAnime {
             0%{
-                scale:0.85
+                scale:0.85;
             }
             100%{
               
-                scale:1.05;
-                background-color: var(--text);
-                color:#08120d;
+                scale:1.03;
+                background-color: #08120d;
+                color:var(--text);
             }
         }
         #action-buttons{
@@ -125,8 +127,8 @@ body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
             font-size: 0.9rem;
         }
          #action-buttons button:hover{
-            scale: 1.08;
-            box-shadow: 0px 0px 10px var(--accent);
+            scale: 1.02;
+            box-shadow: 0px 0px 10px var(--accent) inset;
         }
         dialog{
             border: 7px solid var(--primary);
@@ -135,10 +137,11 @@ body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
         }
         #result-container{
             display: none;
-            width: 500px;
+            width: 60%;
+            max-width: 400px;
             padding: 10px;
-            background-color:var(--text);
-            border: 5px solid var(--primary);
+            background-color:var(--secondary);
+            border: 2px solid var(--primary);
             border-radius: 10px;
             flex-direction: column;
             gap: 10px;
@@ -146,11 +149,7 @@ body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
             text-align: center;
             height: 150px;
         }
-        @media (max-width:550px){
-#result-container{
-            width: 250px;
-}
-        }
+       
         #result-container button{
             background-color: var(--accent);
             padding: 10px;

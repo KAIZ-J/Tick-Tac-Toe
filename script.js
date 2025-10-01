@@ -216,7 +216,7 @@ for(let i=0;;i++){
         function addContent(elem){
      if(boxCheck[elem.id]===true && gameWon===false){
         elem.textContent=userCharacter;
-        elem.style.color=`var(--accent)`;
+        elem.style.color=`var(--primary)`;
         boxCheck[elem.id]=false;
         winCheck();
         if(gameWon===false){
