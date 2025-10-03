@@ -1,203 +1,117 @@
-        *{
-font-family: poppins;
-        }
-        :root{
-        --bg:#0f3d3e;--text:#e6f2f1;--primary:#2a9d8f; --accent:#37b3a8;
-        }
-body.Amber{--bg:#2a1b00;--text:#fff4e1;--primary:#ffb300; --accent:#ffc833;}
-body.Cyan{--bg:#003f4f;--text:#e0f7fa;--primary:#00bcd4; --accent:#26d4ec;}
-body.Lime{--bg:#1b2e14;--text:#f1fbe7;--primary:#a6d609; --accent:#c4f037;}
-body.Marble{--bg:#f5f5f5;--text:#2e2e2e;--primary:#d6d6d6; --accent:#e8e8e8;}
-body.Slate{--bg:#1f2933;--text:#e5e9f0;--primary:#708090; --accent:#8da0b6;}
-body.Zinc{--bg:#1c1c1c;--text:#eaeaea;--primary:#7d7d7d; --accent:#9f9f9f;}
-body.Sand{--bg:#ede0d4;--text:#3e2723;--primary:#d4a373; --accent:#eabf96;}
-        body{
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-           height: 100vh;
-           justify-content: center;
-           margin: 0;
-           text-align: center;
-          transition: background-color .3s ease,color .3s ease;
-          background-color: var(--bg);
-          color: var(--text);
-        }
-        button{
-            cursor: pointer;
-            outline: none;
-        }
-        #box-container{
-        display:none;
-        grid-template-columns: repeat(3,1fr);
-        grid-template-rows: repeat(3,1fr);
-        gap: 5px;
-        }
-        #box-container button{
-            background-color: var(--text);
-            color: #eef4f1;
-            width: 70px;
-            height: 70px;
-            outline: none;
-            cursor: pointer;
-            border:none;
-            font-size: 1.5rem;
-           border: 2px solid var(--accent);
-           color: var(--accent);
-        }
-        /* #box-container button:nth-child(1){
-            border-bottom: 5px solid;
-            border-right: 5px solid;
-        }
-        #box-container button:nth-child(3){
-            border-bottom: 5px solid;
-            border-left: 5px solid;
-        }
-        #box-container button:nth-child(7){
-            border-top: 5px solid;
-            border-right: 5px solid;
-        }
-        #box-container button:nth-child(9){
-            border-top: 5px solid;
-            border-left: 5px solid;
-        }
-        #box-container button:nth-child(2){
-            border-bottom: 5px solid;
-        }
-        #box-container button:nth-child(8){
-            border-top: 5px solid;
-        }
-        
-#box-container button:nth-child(4){
-            border-right: 5px solid;
-        }
-        #box-container button:nth-child(6){
-            border-left: 5px solid;
-        } */
-        #character-buttons{
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            justify-content: center;
-        }
-        #character-buttons button{
-            width: 70px;
-            height: 40px; 
-            border: none;
-            border-radius: 5px;
-            font-weight: bolder;
-            transition: box-shadow .2s ease;
-        }
-        
-        @keyframes scaleAnime {
-            0%{
-                scale:0.85;
-            }
-            100%{
-              
-                scale:1.03;
-                background-color: #08120d;
-                color:var(--text);
-            }
-        }
-        #action-buttons{
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
-        }
-        #action-buttons button:nth-child(1){
-            grid-column-start: span 2;
-            width: auto;
-        }
-         #action-buttons button:nth-child(2){
-            grid-column-start: span 2;
-            width: auto;
-        }
+* {
+  font-family: poppins;
+}
+:root {
+  --bg: #fcfbfa;
+  --color: #1f1f23;
+  --primary: #5c6bc0;
+  --accent: #ff7043;
+  --secondary: #c5cae9;
+  --font-sans: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --board-color: #c5cae9;
+  --line-color: #1f1f2333;
+}
 
-        #action-buttons button{
-           width: 120px;
-            padding: 10px;
-            background-color: var(--primary);
-            border-radius: 5px;
-            border: none;
-            transition: scale .3s ease,box-shadow .2s ease;
-            font-weight: bolder;
-            font-size: 0.9rem;
-        }
-         #action-buttons button:hover{
-            scale: 1.02;
-            box-shadow: 0px 0px 10px var(--accent) inset;
-        }
-        dialog{
-            border: 7px solid var(--primary);
-            border-radius: 10px;
-            transition: border .3s ease;
-        }
-        #result-container{
-            display: none;
-            width: 60%;
-            max-width: 400px;
-            padding: 10px;
-            background-color:var(--secondary);
-            border: 2px solid var(--primary);
-            border-radius: 10px;
-            flex-direction: column;
-            gap: 10px;
-            color: var(--accent);
-            text-align: center;
-            height: 150px;
-        }
-       
-        #result-container button{
-            background-color: var(--accent);
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-        @media (min-width:500px){
-            dialog{
-                width: 50%;
-            }
+body.dark {
+  --bg: #1f1f23;
+  --color: #fcfbfa;
+  --primary: #5c6bc0;
+  --accent: #ff7043;
+  --secondary: #3a3a3f;
+  --board-color: #3a3a3f;
+  --line-color: #fcfbfa33;
+}
 
-        }
-        #checkbox-holder{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .close{
-           padding: 10px;
-           border-radius: 5px;
-           border: none;
-           background-color: var(--primary);
-           color: var(--text);
-        }
-        #theme-dialog{
-        
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        }
-        #select{
-            width: 70%;
-            padding:5px;
-            text-align: center;
-            outline: none;
-        }
-        .active{
-            box-shadow: 0px 0px 15px ;
-            font-size: 1rem;
-            scale: 1.05;
-            font-weight: bolder;
-        }
-       #home h1{
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-       }
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg);
+  color: var(--color);
+}
+button {
+  cursor: pointer;
+  outline: none;
+}
+#box-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+}
+#box-container button {
+  background-color: var(--text);
+  width: 70px;
+  height: 70px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  font-size: 1.5rem;
+  border: 2px solid;
+  color: var(--board-color);
+}
+
+#character-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+#character-buttons button {
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  scale: 0.89;
+  transition: 0.2s ease;
+}
+@keyframes scaleAnime {
+  0% {
+    scale: 0.85;
+  }
+  100% {
+    scale: 1.025;
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--color);
+  }
+}
+#home #try {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--text);
+}
+#character-buttons button.active {
+  background-color: var(--primary);
+  box-shadow: 0px 0px 15px var(--line-color);
+  font-size: 1rem;
+  scale: 1.05;
+  font-weight: bolder;
+}
+#home {
+  display: none;
+}
+#theme-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 1.5em;
+  border: none;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+#theme-btn i {
+  scale: 1.1;
+  transition: 0.4s ease;
+}

@@ -1,74 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic-Tac-Toe</title>
 
-      <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Audiowide|Inter|Atma|Poppins|Montserrat' />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="style.css">
-     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
-</head>
-<body>
-    <div id="home">
-        
-        <h1><span style="font-family: Montserrat;" title="Version 1.08">Tic-Tac-Toe</span> 
-            <dotlottie-wc src="https://lottie.host/d3336733-21bf-46c6-9ee5-466effadf4db/sF7atBWOJq.lottie" style="width: 50px;height: 50px" speed="1" autoplay loop id="lottie"></dotlottie-wc>
-        </h1>
-
-        <div id="action-buttons">
-         <button type="button" id="play" class="action-btn" onclick="startGame()">Play vs Computer</button>
-         <button type="button" id="playFriend" class="action-btn" onclick="startGameFriend()">Play vs Friend</button>
-        <button type="button" class="action-btn" onclick="openCustomizeDialog()">Customize</button>
-        <button type="button" class="action-btn" onclick="openStatsDialog()">Stats</button> 
-         <button type="button" class="action-btn" onclick="openThemeDialog()">Theme</button>
-          <button type="button" class="action-btn" onclick="">More Games</button>
-             
-        </div>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide|Inter|Atma|Poppins|Montserrat"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+     <script src='https://kit.fontawesome.com/9603c04a31.js' crossorigin='anonymous'></script>
+  </head>
+  <body class="dark">
+    <button type="button" onclick="themeChange(this)" id="theme-btn"><i class="fa-solid fa-sun"></i></button>
+    <div id="box-container"></div>
+    <div id="home"></div>
+    <div id="character-settings">
+      <h2>Change Your Character</h2> 
+      <div id="character-buttons">
+        <button
+          type="button"
+          onclick='updateCharacter("X","O")'
+          id="x-btn"
+          class="active"
+        >
+          X
+        </button>
+        <button type="button" onclick='updateCharacter("O","X")' id="o-btn">
+          O
+        </button>
+      </div>
     </div>
-    <dialog id="customize-dialog">
-        
-         <h3>Change Your Character</h3>
-        <div id="character-buttons">
-      <button type="button" onclick='updateCharacter("X","O")' id="x-btn" class="active">X</button>
-      <button type="button" onclick='updateCharacter("O","X")' id="o-btn">O</button>
-      
-        </div>
-        <br>
-        <div id="checkbox-holder">
-            <p>Allow Diagonal Wins</p>
-            <input type="checkbox" id="diagonal-win" checked oninput="diagonalFx(this)">
-        </div>
-        <button type="button" class="close" onclick="closeDialog(this)">Close</button>
-    </dialog>
-    <dialog id="theme-dialog">
-        <h3>Select Your Theme</h3>
-        <select id="select" onchange="changeTheme(this)">
-            <option value="Jade">Jade</option>
-            <option value="Lime">Lime</option>
-            <option value="Zinc">Zinc</option>
-            <option value="Amber">Amber</option>
-            <option value="Marble">Marble</option>
-            <option value="Slate">Slate</option>
-            <option value="Sand">Sand</option>
-            <option value="Cyan">Cyan</option>
-        </select>
-        <br> <br>
-         <button type="button" class="close"  onclick="closeDialog(this)">Close</button>
-    </dialog>
-    <dialog id="stats-dialog">
-        
-    </dialog>
-    <div id="box-container">
-    </div>
-    <div id="result-container"></div>
-    <script src="script.js">
-
-        
-    </script>
-</body>
+  
+    <script src="script.js"></script>
+  </body>
 </html>
