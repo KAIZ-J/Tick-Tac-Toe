@@ -36,12 +36,22 @@ function updateCharacter(user, computer) {
   userCharacter = user;
   pcCharacter = computer;
 }
-
+let animationNum = {
+1:"roll-in-left",
+2:"roll-in-top",
+3:"roll-in-right",
+4:"roll-in-left",
+5:"roll-in-top",
+6:"roll-in-right",
+7:"roll-in-left",
+8:"roll-in-top", 
+9:"roll-in-right",
+}
 function addBoxes(cls) {
   boxContainer.innerHTML = "";
   boxCheck = {};
   for (let i = 1; i < 10; i++) {
-    boxContainer.innerHTML += `<button type="button" id="box-${i}" class="box" onclick="${cls}(this)"></button>`;
+    boxContainer.innerHTML += `<button type="button" id="box-${i}" class="box ${animationNum[i]}" onclick="${cls}(this)"></button>`;
     document.getElementById(`box-${i}`).style.borderColor = `var(--text)`;
     boxCheck[`box-${i}`] = true;
   }
@@ -183,7 +193,7 @@ function pcChoice() {
 addBoxes("addContent");
 function addContent(elem) {
   if (boxCheck[elem.id] === true && gameWon === false) {
-    elem.textContent = userCharacter;
+    elem.innerHTML = userCharacter;
     elem.style.color = `var(--primary)`;
     characterSettings.style.display = "none";
     boxCheck[elem.id] = false;

@@ -34,6 +34,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--bg);
   color: var(--color);
+  overflow: hidden;
 }
 button {
   cursor: pointer;
@@ -55,22 +56,80 @@ button {
   font-size: 1.5rem;
   border: 2px solid;
   color: var(--board-color);
+  font-family: Montserrat;
+}
+.roll-in-left {
+	animation: roll-in-left 1s ease-out both;
+}
+.roll-in-right {
+	animation: roll-in-right 1s ease-out both;
+}
+.roll-in-top {
+	animation: roll-in-top 1s ease-out both; 
+}
+@keyframes roll-in-left {
+  0% {
+    transform: translateX(-800px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+} 
+@keyframes roll-in-top {
+  0% {
+    transform: translateY(-800px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
 }
 
-#character-buttons {
+@keyframes roll-in-right {
+  0% {
+    transform: translateX(800px) rotate(540deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes swing-in-top-fwd {
+  0% {
+    transform: rotateX(-100deg);
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+#character-buttons{
+  margin-top: 20px;
+  background-color: rgba(255,255,255,0.1);
+  width: 100px;
+  height: 50px;
+  border:1px solid;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  justify-content: center;
 }
 #character-buttons button {
-  width: 70px;
-  height: 40px;
+  width: 50px;
+height: 50px;
   border: none;
-  border-radius: 5px;
   font-weight: bolder;
-  scale: 0.89;
   transition: 0.2s ease;
+  font-family: Montserrat;
+}
+#character-buttons button.active {
+  background-color: var(--primary);
+  font-size: 1.2rem;
+  color: var(--text);
 }
 @keyframes scaleAnime {
   0% {
@@ -84,19 +143,14 @@ button {
   }
 }
 #home #try {
-  padding: 10px;
-  border-radius: 5px;
+  width: 150px;
+  height: 40px;
   border: none;
-  background-color: var(--primary);
+  background-color: var(--secondary);
   color: var(--text);
+  font-family: monospace;
 }
-#character-buttons button.active {
-  background-color: var(--primary);
-  box-shadow: 0px 0px 15px var(--line-color);
-  font-size: 1rem;
-  scale: 1.05;
-  font-weight: bolder;
-}
+
 #home {
   display: none;
 }
@@ -114,4 +168,19 @@ button {
 #theme-btn i {
   scale: 1.1;
   transition: 0.4s ease;
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#character-settings h2{
+
 }
